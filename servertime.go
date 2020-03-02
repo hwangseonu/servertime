@@ -1,4 +1,4 @@
-package main
+package servertime
 
 import (
 	"errors"
@@ -6,10 +6,13 @@ import (
 	"time"
 )
 
+var httpClient = http.Client{}
+
 func Get(url string) (time.Time, error) {
 	t := time.Time{}
 
-	res, err := http.Get(url)
+	res, err := httpClient.Get(url)
+
 	if err != nil {
 		return t, err
 	}
